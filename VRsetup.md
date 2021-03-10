@@ -40,3 +40,7 @@ Finally create an empty demo scene to test that everything is working, where you
 You are now good to go. If you followed this steps in order you should now be able to click play in the Unity editor and see it working in your Oculus Quest 2 in real time.
 
 Also if you now click "Build and run" you should be able to test your project directly in your Oculus Quest 2.
+
+
+# VR Setup for Unity 2019.x.xfx
+For this, one can use the XR plugin. Have however not tried this. Just note that using the oculus integration asset for this may cause errors, and wont possibly work (maybe with a lot of debugging).
