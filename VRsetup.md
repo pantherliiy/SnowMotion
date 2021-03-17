@@ -44,3 +44,11 @@ Also if you now click "Build and run" you should be able to test your project di
 
 # VR Setup for Unity 2019.x.xfx
 For this, one can use the XR plugin. Have however not tried this. Just note that using the oculus integration asset for this may cause errors, and wont possibly work (maybe with a lot of debugging).
+
+
+
+# Debbung, VR or Boundry not found
+Follow the steps down in this thread: https://forum.unity.com/threads/oculus-integration-pack-problem-with-unity-2020-2.1028716/
+Need to remove some files and reimport Oculus Integration after restaring Unity project.
+Remember to check that the settings from the guide above are still true after reset.
+
