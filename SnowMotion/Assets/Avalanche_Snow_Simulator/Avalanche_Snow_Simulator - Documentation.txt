@@ -1,0 +1,28 @@
+Load "Avalanche_Snow_Simulator.unity" for an example scene, or simply drag the Avalanche effect of the required size from the Prefab folder (in the Project window) into the Hierarchy window.
+
+Click the left mouse button to trigger the avalanche.
+
+There are three main variables that can be changed for the avalanche; select the avalanche effect in the Hierarchy window and they will be visible in the Inspector window (on the right). Avalanche speed effects the acceleration of the avalanche (this must be a negative value). Avalanche speed is the top speed that the avalanche can't exceed (although it will continue travelling at this top speed when this value is reached). Avalanche Stop Speed is the speed that the avalanche will stop travelling when it goes beneath (either by hitting an obstacle or if the terrain gradient becomes too flat).
+
+If you experience issues with the avalanche getting stuck and stopping too early, first make sure that the avalanche is not starting too close to the ground (move it way up in the Y axis so the sphere doesn't intersect the ground). Slightly moving the start location by a few metres on the X and Z can sometimes help too. The Drag and Angular Drag of the avalanche can also be reduced; expand out the effect in the Hierarchy window, select the Collision_Sphere, then these values will be visible under Rigidbody in the Inspector window.
+
+When placing the avalanche effect in your own scenes you'll want to follow these steps:
+
+1. Make sure that the effect is above the terrain in the Y axis - both spheres (visible in the Scene window when you select the effect) should not intersect the terrain ground. 
+
+2. Put the terrain (or whatever you want the avalanche to collide with) in its own layer; select the Terrain, then in the Inspector window next to Layer (at the very top) click on "Default", then "Add Layer". 
+
+2. In one of the empty layer boxes type "Terrain". 
+
+3. Expand out the Avalanche effect in the Hierarchy window and select the child node Snow_Spawner, then in the Inspector window scroll down and click on Collision. 
+
+4. Next to "Collides with", select the drop down menu (it might say "Everything" or "Terrain") and select "Nothing" (to clear it). Then click on it again and choose "Terrain" so that the avalanche only collides with the terrain environment.
+
+
+Have fun!
+
+Thanks for purchasing this asset - please consider rating or writing a review about it. If you have any questions then don't hesitate to get in touch at bendurrant@rivermillstudios.com 
+
+If you use this or any other Rivermill Studios assets in your games then we'd love to know (and help you promote them!).
+
+
