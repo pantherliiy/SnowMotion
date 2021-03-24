@@ -7,6 +7,7 @@ public class endSki : MonoBehaviour
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController player;
     public GameObject steepTrigger, gentleTrigger;
     private AudioSource audioDataSteep, audioDataGentle;
+    public GameOver userInterfaceObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class endSki : MonoBehaviour
             audioDataSteep.Stop();
             audioDataGentle = gentleTrigger.GetComponent<AudioSource>();
             audioDataGentle.Stop();
+            userInterfaceObject.LaunchUI();
             // yield return new WaitForSeconds(10);
             // Debug.Log("Starting UI");
             // userInterfaceObject.LaunchUI();

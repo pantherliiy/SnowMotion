@@ -40,5 +40,8 @@ public class preAvalancheInfo : MonoBehaviour
 
         MeshRenderer infoMesh = infoText.GetComponent<MeshRenderer>();
         infoMesh.enabled = !infoMesh.enabled;
+
+        MeshRenderer imageMesh = image.GetComponent<MeshRenderer>();
+        imageMesh.enabled = !imageMesh.enabled;
     }
 }
