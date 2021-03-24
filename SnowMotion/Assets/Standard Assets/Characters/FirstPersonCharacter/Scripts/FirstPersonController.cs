@@ -42,6 +42,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        public bool isSliding; // is on a slope or not
+        public float slideFriction = 0.5f; // ajusting the friction of the slope
+        private Vector3 hitNormal; //orientation of the slope.
+        private float skiSpeed = 100;
 
         // Use this for initialization
         private void Start()
@@ -56,6 +60,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            isSliding = false;
         }
 
 
@@ -72,7 +77,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
                 StartCoroutine(m_JumpBob.DoBobCycle());
-                PlayLandingSound();
+                if(!isSliding){
+                    PlayLandingSound();
+                }
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
             }
@@ -126,6 +133,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
             }
+             if (isSliding) {
+                m_MoveDir.x += (1f - hitNormal.y) * hitNormal.x * (skiSpeed - slideFriction);
+                m_MoveDir.z += (1f - hitNormal.y) * hitNormal.z * (skiSpeed - slideFriction);
+            }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);
@@ -157,7 +168,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_NextStep = m_StepCycle + m_StepInterval;
 
-            PlayFootStepAudio();
+            if(!isSliding) {
+                PlayFootStepAudio();
+            }
         }
 
 
@@ -243,6 +256,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            hitNormal = hit.normal;
             Rigidbody body = hit.collider.attachedRigidbody;
             //dont move the rigidbody if the character is on top of it
             if (m_CollisionFlags == CollisionFlags.Below)
