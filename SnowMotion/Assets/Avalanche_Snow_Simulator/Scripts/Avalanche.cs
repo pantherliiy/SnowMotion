@@ -39,20 +39,7 @@ public class Avalanche : MonoBehaviour
  
 	void Update() 
 	{
-
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-
-            if (AvalancheStartCheck.avalancheStart == false)
-            {
-                StartCoroutine("StartAvalanche");
-            }
-
-        }
-
         // Check to see if the first avalanch snow particle has been emitted - used to sync up the sound
-
         if (AvalancheStartCheck.avalancheStart == true)
         {
 
