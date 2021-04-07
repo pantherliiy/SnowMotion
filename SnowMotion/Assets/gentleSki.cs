@@ -6,6 +6,7 @@ public class gentleSki : MonoBehaviour
 {
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController player;
     public AudioSource audioData;
+    public bool gentle_chosen = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class gentleSki : MonoBehaviour
 
     public void OnTriggerEnter(Collider gameObjectInformation) { //IEnumerator 
         if (gameObjectInformation.tag == "Player") {
+            gentle_chosen = true;
             Debug.Log("gentle ski");
             player.isSliding = true;
             audioData = GetComponent<AudioSource>();

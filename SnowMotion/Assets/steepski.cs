@@ -8,6 +8,7 @@ public class steepski : MonoBehaviour
     public Avalanche avalancheObject;
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController player;
     public AudioSource audioData;
+    public bool steep_chosen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class steepski : MonoBehaviour
 
     public void OnTriggerEnter(Collider gameObjectInformation) { //IEnumerator 
         if (gameObjectInformation.tag == "Player") {
+            steep_chosen = true;
             avalancheObject.onPlayerEnter();
             player.isSliding = true;
             audioData = GetComponent<AudioSource>();
