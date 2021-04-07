@@ -18,7 +18,7 @@ public class topInfo : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other){
-        SpriteRenderer pointOfInterestMesh = pointOfInterest.GetComponent<SpriteRenderer>();
+        MeshRenderer pointOfInterestMesh = pointOfInterest.GetComponent<MeshRenderer>();
         pointOfInterestMesh.enabled = !pointOfInterestMesh.enabled;
 
         MeshRenderer backgroundMesh = background.GetComponent<MeshRenderer>();
@@ -35,7 +35,7 @@ public class topInfo : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other){
-        SpriteRenderer pointOfInterestMesh = pointOfInterest.GetComponent<SpriteRenderer>();
+        MeshRenderer pointOfInterestMesh = pointOfInterest.GetComponent<MeshRenderer>();
         pointOfInterestMesh.enabled = !pointOfInterestMesh.enabled;
 
         MeshRenderer backgroundMesh = background.GetComponent<MeshRenderer>();
