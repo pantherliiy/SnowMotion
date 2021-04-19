@@ -21,16 +21,13 @@ public class Avalanche : MonoBehaviour
     //initialize values 
     void Start() 
 	{
-
         Physics.gravity = new Vector3(0, avalancheSpeed, 0);
         avalancheRigidBody.GetComponent<Rigidbody>().maxAngularVelocity = avalancheTopSpeed;
-
         avalancheRigidBody.SetActive(false);
-
     } 
 
     public void onPlayerEnter () {
-        if (AvalancheStartCheck.avalancheStart == false)
+        if (avalancheStart == false)
             {
                 Debug.Log("Avalanch starting");
                 StartCoroutine("StartAvalanche");
@@ -40,19 +37,9 @@ public class Avalanche : MonoBehaviour
 	void Update() 
 	{
         // Check to see if the first avalanch snow particle has been emitted - used to sync up the sound
-        if (AvalancheStartCheck.avalancheStart == true)
+        if (avalancheStart == true)
         {
-
-            if (avalancheStart == false)
-            {
-
-                avalancheStart = true;
-                double clipDuration = (double)avalancheStartAudio.clip.samples / avalancheStartAudio.clip.frequency;
-                avalancheStartAudio.PlayScheduled(AudioSettings.dspTime + 0.1);
-                avalancheMiddleAudio.PlayScheduled(AudioSettings.dspTime + 0.1 + clipDuration);
-
-            }
-
+                   
         }
 
 
@@ -68,46 +55,30 @@ public class Avalanche : MonoBehaviour
 
             if (speed < avalancheStopSpeed)
             { 
-
                 if (avalancheStopped == false)
                 {
-                    
-                        StartCoroutine("StopAvalanche");
-
+                    StartCoroutine("StopAvalanche");
                 }
-
             }
-
         }
-
-
     }
 
     IEnumerator StartAvalanche()
     {
-
+        avalancheStart = true;
         avalancheRigidBody.SetActive(true);
-
-        yield return new WaitForSeconds(2.0f);
-
-  
+        avalancheStartAudio.Play();
+        avalancheMiddleAudio.Play();
+        yield return new WaitForSeconds(1.0f);  
     }
 
     IEnumerator StopAvalanche()
     {
-
+        avalancheStart = false;
         avalancheStopped = true;
-
         yield return new WaitForSeconds(2.0f);
-
         avalancheRigidBody.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
         avalancheMiddleAudio.Stop();
         avalancheEndAudio.Play();
-
     }
-
-
-
-
 }

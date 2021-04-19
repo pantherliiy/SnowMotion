@@ -5,7 +5,8 @@ using UnityEngine;
 public class steepski : MonoBehaviour
 {
 
-    public Avalanche avalancheObject;
+    public Avalanche firstAvalancheObject;
+    public Avalanche secondAvalancheObject;
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController player;
     public AudioSource audioData;
     public bool steep_chosen = false;
@@ -25,7 +26,8 @@ public class steepski : MonoBehaviour
     public void OnTriggerEnter(Collider gameObjectInformation) { //IEnumerator 
         if (gameObjectInformation.tag == "Player") {
             steep_chosen = true;
-            avalancheObject.onPlayerEnter();
+            firstAvalancheObject.onPlayerEnter();
+            secondAvalancheObject.onPlayerEnter();
             player.isSliding = true;
             audioData = GetComponent<AudioSource>();
             audioData.Play(0);

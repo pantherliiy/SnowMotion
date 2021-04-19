@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class route_selection : MonoBehaviour
 {
-    public GameObject image, infoText, pointOfInterest;
+    public GameObject background, infoText, pointOfInterest;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +22,8 @@ public class route_selection : MonoBehaviour
         SpriteRenderer pointOfInterestMesh = pointOfInterest.GetComponent<SpriteRenderer>();
         pointOfInterestMesh.enabled = !pointOfInterestMesh.enabled;
 
-        MeshRenderer imageMesh = image.GetComponent<MeshRenderer>();
-        imageMesh.enabled = true;
-
+        MeshRenderer backgroundMesh = background.GetComponent<MeshRenderer>();
+        backgroundMesh.enabled = !backgroundMesh.enabled;
 
         MeshRenderer infoMesh = infoText.GetComponent<MeshRenderer>();
         infoMesh.enabled = !infoMesh.enabled;
@@ -34,10 +33,10 @@ public class route_selection : MonoBehaviour
         SpriteRenderer pointOfInterestMesh = pointOfInterest.GetComponent<SpriteRenderer>();
         pointOfInterestMesh.enabled = !pointOfInterestMesh.enabled;
 
+        MeshRenderer backgroundMesh = background.GetComponent<MeshRenderer>();
+        backgroundMesh.enabled = !backgroundMesh.enabled;
+        
         MeshRenderer infoMesh = infoText.GetComponent<MeshRenderer>();
         infoMesh.enabled = !infoMesh.enabled;
-
-        MeshRenderer imageMesh = image.GetComponent<MeshRenderer>();
-        imageMesh.enabled = false;
     }
 }

@@ -43,9 +43,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
         public bool isSliding; // is on a slope or not
+        public bool is_gentle;  // needed to have higher slide velocity for gentle skiing
         public float slideFriction = 0.5f; // ajusting the friction of the slope
         private Vector3 hitNormal; //orientation of the slope.
-        private float skiSpeed = 100;
+        private float skiSpeed;
 
         // Use this for initialization
         private void Start()
@@ -61,6 +62,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
             isSliding = false;
+            is_gentle = false;
         }
 
 
@@ -133,9 +135,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
             }
-             if (isSliding) {
-                m_MoveDir.x += (1f - hitNormal.y) * hitNormal.x * (skiSpeed - slideFriction);
-                m_MoveDir.z += (1f - hitNormal.y) * hitNormal.z * (skiSpeed - slideFriction);
+             if (isSliding) { 
+                if (is_gentle) {  
+                    skiSpeed = 400;  // gentle skiing needs higher velocity
+                    m_MoveDir.x += (1f - hitNormal.y) * hitNormal.x * (skiSpeed - slideFriction);
+                    m_MoveDir.z += (1f - hitNormal.y) * hitNormal.z * (skiSpeed - slideFriction);
+                }
+                else {  
+                    skiSpeed = 110;  // steep skiing has lower velocity
+                    m_MoveDir.x += (1f - hitNormal.y) * hitNormal.x * (skiSpeed - slideFriction);
+                    m_MoveDir.z += (1f - hitNormal.y) * hitNormal.z * (skiSpeed - slideFriction);
+                }
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 

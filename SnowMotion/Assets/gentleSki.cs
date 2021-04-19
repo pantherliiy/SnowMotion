@@ -23,6 +23,7 @@ public class gentleSki : MonoBehaviour
         if (gameObjectInformation.tag == "Player") {
             gentle_chosen = true;
             Debug.Log("gentle ski");
+            player.is_gentle = true;
             player.isSliding = true;
             audioData = GetComponent<AudioSource>();
             audioData.Play(0);

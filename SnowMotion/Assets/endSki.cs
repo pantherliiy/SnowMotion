@@ -20,13 +20,14 @@ public class endSki : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider gameObjectInformation) { //IEnumerator 
-        if (gameObjectInformation.tag == "Player") {
+    public IEnumerator OnTriggerEnter(Collider gameObjectInformation) { //IEnumerator 
+        if (gameObjectInformation.tag == "Player" & (gentleTrigger.GetComponent<gentleSki>().gentle_chosen | steepTrigger.GetComponent<steepski>().steep_chosen)) {
             player.isSliding = false;
             audioDataSteep = steepTrigger.GetComponent<AudioSource>();
             audioDataSteep.Stop();
             audioDataGentle = gentleTrigger.GetComponent<AudioSource>();
             audioDataGentle.Stop();
+            yield return new WaitForSeconds(5.0f);  
             userInterfaceObject.LaunchUI();
             // yield return new WaitForSeconds(10);
             // Debug.Log("Starting UI");

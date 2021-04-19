@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class shooting_cracks : MonoBehaviour
 {
-    public GameObject image, infoText, pointOfInterest;
+    public GameObject background, image, infoText, pointOfInterest;
     public AudioSource audioData;
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,8 @@ public class shooting_cracks : MonoBehaviour
         }
         imageMesh.enabled = true;
 
+        MeshRenderer backgroundMesh = background.GetComponent<MeshRenderer>();
+        backgroundMesh.enabled = !backgroundMesh.enabled;
 
         MeshRenderer infoMesh = infoText.GetComponent<MeshRenderer>();
         infoMesh.enabled = !infoMesh.enabled;
@@ -38,6 +40,9 @@ public class shooting_cracks : MonoBehaviour
     private void OnTriggerExit(Collider other){
         SpriteRenderer pointOfInterestMesh = pointOfInterest.GetComponent<SpriteRenderer>();
         pointOfInterestMesh.enabled = !pointOfInterestMesh.enabled;
+
+        MeshRenderer backgroundMesh = background.GetComponent<MeshRenderer>();
+        backgroundMesh.enabled = !backgroundMesh.enabled;
 
         MeshRenderer infoMesh = infoText.GetComponent<MeshRenderer>();
         infoMesh.enabled = !infoMesh.enabled;
