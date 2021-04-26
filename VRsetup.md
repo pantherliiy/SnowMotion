@@ -52,3 +52,6 @@ Follow the steps down in this thread: https://forum.unity.com/threads/oculus-int
 Need to remove some files and reimport Oculus Integration after restaring Unity project.
 Remember to check that the settings from the guide above are still true after reset.
 
+
+# Newer guide for using Integration Kit for Oculus Rift (kinda works for Oculus Quest 2)
+Follow the steps in this thread: https://circuitstream.com/blog/oculus-unity-setup/
